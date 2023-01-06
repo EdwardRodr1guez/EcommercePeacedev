@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_peacedev/pages/pages.dart';
+import 'package:flutter_peacedev/providers/add_like_provider.dart';
+import 'package:flutter_peacedev/providers/search_provider.dart';
 import 'package:flutter_peacedev/providers/select_page_provider.dart';
+import 'package:flutter_peacedev/services/product_services.dart';
 import 'package:provider/provider.dart';
 
 
 void main() {
   runApp(MultiProvider(
-    providers: [ChangeNotifierProvider(create: (_) => SelectPageProvider(),)],
+    providers: [ChangeNotifierProvider(create: (_) => SelectPageProvider(),),
+                ChangeNotifierProvider(create: (_) => ProductServices()),
+                ChangeNotifierProvider(create: (_) => AddLikeProvider()),
+                ChangeNotifierProvider(create: (_) => SearchProvider()),
+               ],
   child: const MyApp()));
 }
 

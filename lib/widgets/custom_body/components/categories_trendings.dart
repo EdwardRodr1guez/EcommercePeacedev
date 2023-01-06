@@ -1,10 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_peacedev/providers/search_provider.dart';
+import 'package:flutter_peacedev/services/product_services.dart';
+import 'package:provider/provider.dart';
 
 class CategoriesTrendings extends StatelessWidget {
   const CategoriesTrendings({super.key});
 
   @override
   Widget build(BuildContext context) {
+
+    Provider.of<ProductServices>(context).getList();
+    final productServices        = Provider.of<ProductServices>(context).data;
+    final categoryElectronics    = productServices.firstWhere(((element) => element.category=="electronics"));
+    final categoryJewel          = productServices.firstWhere(((element) => element.category=="jewelery"));
+    final categoryMen            = productServices.firstWhere(((element) => element.category=="men's clothing"));
+    final categoryWomen          = productServices.firstWhere(((element) => element.category=="women's clothing"));
+    productServices.retainWhere((element) => element.title!.startsWith(Provider.of<SearchProvider>(context).search));
+    
+
+
+   
+
     return Column(
            children: [
             
@@ -13,19 +29,19 @@ class CategoriesTrendings extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Container(height: 75,width: 100, decoration: BoxDecoration(color: Colors.red,borderRadius: BorderRadius.all(Radius.circular(10))),),
-                Container(height: 75,width: 100, decoration: BoxDecoration(color: Colors.red,borderRadius: BorderRadius.all(Radius.circular(10))),),
-                Container(height: 75,width: 100, decoration: BoxDecoration(color: Colors.red,borderRadius: BorderRadius.all(Radius.circular(10))),),
-              ],),
+                Container(height: 75,width: 80, decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10))),child: FadeInImage(fit: BoxFit.cover,placeholder: AssetImage('assets/img/giphy.gif') ,image: NetworkImage(categoryMen.image!)),),
+                Container(height: 75,width: 80, decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10))),child: FadeInImage(fit: BoxFit.cover,placeholder: AssetImage('assets/img/giphy.gif') ,image: NetworkImage(categoryElectronics.image!)),),
+                Container(height: 75,width: 80, decoration: BoxDecoration(color: Colors.grey,borderRadius: BorderRadius.all(Radius.circular(10))),child: Center(child: Text("New Category Soon!",textAlign: TextAlign.center,)),),
+             ],),
 
             SizedBox(height: 10,),
 
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Container(height: 75,width: 100, decoration: BoxDecoration(color: Colors.red,borderRadius: BorderRadius.all(Radius.circular(10))),),
-                Container(height: 75,width: 100, decoration: BoxDecoration(color: Colors.red,borderRadius: BorderRadius.all(Radius.circular(10))),),
-                Container(height: 75,width: 100, decoration: BoxDecoration(color: Colors.red,borderRadius: BorderRadius.all(Radius.circular(10))),),
+                Container(height: 75,width: 80, decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10))),child: FadeInImage(fit: BoxFit.cover,placeholder: AssetImage('assets/img/giphy.gif') ,image: NetworkImage(categoryWomen.image!)),),
+                Container(height: 75,width: 80, decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10))),child: FadeInImage(fit: BoxFit.cover,placeholder: AssetImage('assets/img/giphy.gif') ,image: NetworkImage(categoryJewel.image!)),),
+                Container(height: 75,width: 80, decoration: BoxDecoration(color: Colors.grey,borderRadius: BorderRadius.all(Radius.circular(10))),child: Center(child: Text("New Category Soon!",textAlign: TextAlign.center,)),),
              
               ],),
 

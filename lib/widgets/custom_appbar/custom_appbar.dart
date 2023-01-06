@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_peacedev/providers/search_provider.dart';
+import 'package:flutter_peacedev/services/product_services.dart';
+import 'package:provider/provider.dart';
 
-class CustomAppbar extends StatelessWidget with PreferredSizeWidget{
+class CustomAppbar extends StatefulWidget with PreferredSizeWidget{
       CustomAppbar({
     required this.height,
     Key? key,
@@ -9,15 +12,21 @@ class CustomAppbar extends StatelessWidget with PreferredSizeWidget{
   double height;
   @override
   Size get preferredSize => Size.fromHeight(height);
+  @override
+  State<CustomAppbar> createState() => _CustomAppbarState();
+}
+
+class _CustomAppbarState extends State<CustomAppbar> {
+  
 
   @override
   Widget build(BuildContext context) {
     return PreferredSize(
-              preferredSize: Size(158,CustomAppbar(height: height,).preferredSize.height),
+              preferredSize: Size(158,CustomAppbar(height: widget.height,).preferredSize.height),
               child: Stack(
                       children: [
                         Container(
-                          height: height,
+                          height: widget.height,
                           decoration: const BoxDecoration(
                             gradient: LinearGradient(
                             begin: Alignment.centerLeft,end: Alignment(0.95, 1.0), 
@@ -53,10 +62,22 @@ class CustomAppbar extends StatelessWidget with PreferredSizeWidget{
                           margin: const EdgeInsets.only(top: 80),
                           height: 45,
                           width: 280,
-                          child: const Material(
+                          child: Material(
                             borderRadius:  BorderRadius.all(Radius.circular(20)),
                             elevation: 10,
                             child: Center(child: TextField(
+                              onChanged: (value) { 
+                                Provider.of<SearchProvider>(context,listen: false).search=value;
+                                if(Provider.of<SearchProvider>(context,listen: false).search==""){
+                                  
+                                   Provider.of<ProductServices>(context,listen: false).data=Provider.of<ProductServices>(context,listen: false).getList();
+                                }else{
+                                  
+                                   List adata=Provider.of<ProductServices>(context,listen: false).getList();
+                                        adata.retainWhere((element) => element.title!.startsWith(value));
+                                   print("Filtra o no ${adata.length}");
+                                }
+                                },
                               decoration: InputDecoration(contentPadding: EdgeInsets.symmetric(vertical: 13),prefixIcon: Icon(Icons.search,color: Color.fromRGBO(0, 0, 0, 0.53) ),hintText: "Search",border: InputBorder.none, hintStyle: TextStyle(color: Color.fromRGBO(0, 0, 0, 0.53),fontWeight: FontWeight.w400, fontSize: 18)),
                             )),
                           ),
