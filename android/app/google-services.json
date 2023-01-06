@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "831606316240",
+    "project_id": "peacedev-test",
+    "storage_bucket": "peacedev-test.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:831606316240:android:8ab79c71c5ebffb89bd2d5",
+        "android_client_info": {
+          "package_name": "com.example.flutter_peacedev"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "831606316240-pf5bslnrg992drnv3l0crufba4vbvuqj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCa1tIv9P7qKEZoB_-g4F0TdllQVJQz8Js"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "831606316240-pf5bslnrg992drnv3l0crufba4vbvuqj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

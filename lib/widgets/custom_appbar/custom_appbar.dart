@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_peacedev/firebase/users_firebase.dart';
 import 'package:flutter_peacedev/providers/search_provider.dart';
 import 'package:flutter_peacedev/services/product_services.dart';
 import 'package:provider/provider.dart';
@@ -39,12 +41,19 @@ class _CustomAppbarState extends State<CustomAppbar> {
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: const[
-                                    Text("Hi Edward!", style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 25),),
-                                    Icon(Icons.notifications_none_outlined, color: Colors.white,),
-                                  ],),
+                                  StreamBuilder<DocumentSnapshot>(
+                                    stream: UsersRepository().getUserNameByFirestore("IG2Y5n09Q36cCzql1jbP"),
+                                    builder: (context, snapshot) {
+                                      print(snapshot.data!.data());
+                                      String name=snapshot.data!["name"];
+                                      return Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: [
+                                        Text("Hi $name!", style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 25),),
+                                        Icon(Icons.notifications_none_outlined, color: Colors.white,),
+                                      ],);
+                                    }
+                                  ),
                                   const SizedBox(height: 5,),
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.start,

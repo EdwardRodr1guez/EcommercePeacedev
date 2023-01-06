@@ -5,9 +5,14 @@ import 'package:flutter_peacedev/providers/search_provider.dart';
 import 'package:flutter_peacedev/providers/select_page_provider.dart';
 import 'package:flutter_peacedev/services/product_services.dart';
 import 'package:provider/provider.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
+void main() async {
 
-void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.android);
   runApp(MultiProvider(
     providers: [ChangeNotifierProvider(create: (_) => SelectPageProvider(),),
                 ChangeNotifierProvider(create: (_) => ProductServices()),
