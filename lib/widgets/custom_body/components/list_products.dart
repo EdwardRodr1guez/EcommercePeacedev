@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_peacedev/providers/add_like_provider.dart';
+import 'package:flutter_peacedev/providers/search_provider.dart';
 import 'package:flutter_peacedev/services/product_services.dart';
 import 'package:provider/provider.dart';
 import 'dart:math' as Math;
@@ -17,8 +18,10 @@ class _ListProductsState extends State<ListProducts> {
 
     //Provider.of<ProductServices>(context).getList();
     final productServices = Provider.of<ProductServices>(context).data;
+    productServices.retainWhere((element) => element.title!.startsWith(Provider.of<SearchProvider>(context).search));
+    
+    
 
-    //
     return Container(
           margin: EdgeInsets.symmetric(horizontal: 25),
           height: 150, 
@@ -28,6 +31,7 @@ class _ListProductsState extends State<ListProducts> {
             scrollDirection: Axis.horizontal,
             itemCount: productServices.length,
             itemBuilder: (context, index) {
+              
               
               //print(productServices[index].image);
               Provider.of<AddLikeProvider>(context).flag;

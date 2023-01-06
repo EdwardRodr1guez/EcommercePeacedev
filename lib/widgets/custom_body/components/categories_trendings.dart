@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_peacedev/providers/search_provider.dart';
 import 'package:flutter_peacedev/services/product_services.dart';
 import 'package:provider/provider.dart';
 
@@ -11,12 +10,11 @@ class CategoriesTrendings extends StatelessWidget {
 
     Provider.of<ProductServices>(context).getList();
     final productServices        = Provider.of<ProductServices>(context).data;
-    final categoryElectronics    = productServices.firstWhere(((element) => element.category=="electronics"));
-    final categoryJewel          = productServices.firstWhere(((element) => element.category=="jewelery"));
-    final categoryMen            = productServices.firstWhere(((element) => element.category=="men's clothing"));
-    final categoryWomen          = productServices.firstWhere(((element) => element.category=="women's clothing"));
-    productServices.retainWhere((element) => element.title!.startsWith(Provider.of<SearchProvider>(context).search));
-    
+    //final categoryElectronics    = productServices.firstWhere(((element) => element.category=="electronics"));
+    //final categoryJewel          = productServices.firstWhere(((element) => element.category=="jewelery"));
+    //final categoryMen            = productServices.firstWhere(((element) => element.category=="men's clothing"));
+    //final categoryWomen          = productServices.firstWhere(((element) => element.category=="women's clothing"));
+   
 
 
    
@@ -29,8 +27,8 @@ class CategoriesTrendings extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Container(height: 75,width: 80, decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10))),child: FadeInImage(fit: BoxFit.cover,placeholder: AssetImage('assets/img/giphy.gif') ,image: NetworkImage(categoryMen.image!)),),
-                Container(height: 75,width: 80, decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10))),child: FadeInImage(fit: BoxFit.cover,placeholder: AssetImage('assets/img/giphy.gif') ,image: NetworkImage(categoryElectronics.image!)),),
+                Container(height: 75,width: 80, decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10))),child: FadeInImage(fit: BoxFit.cover,placeholder: AssetImage('assets/img/giphy.gif') ,image: NetworkImage("https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg")),),
+                Container(height: 75,width: 80, decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10))),child: FadeInImage(fit: BoxFit.cover,placeholder: AssetImage('assets/img/giphy.gif') ,image: NetworkImage("https://fakestoreapi.com/img/51Y5NI-I5jL._AC_UX679_.jpg")),),
                 Container(height: 75,width: 80, decoration: BoxDecoration(color: Colors.grey,borderRadius: BorderRadius.all(Radius.circular(10))),child: Center(child: Text("New Category Soon!",textAlign: TextAlign.center,)),),
              ],),
 
@@ -39,8 +37,8 @@ class CategoriesTrendings extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Container(height: 75,width: 80, decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10))),child: FadeInImage(fit: BoxFit.cover,placeholder: AssetImage('assets/img/giphy.gif') ,image: NetworkImage(categoryWomen.image!)),),
-                Container(height: 75,width: 80, decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10))),child: FadeInImage(fit: BoxFit.cover,placeholder: AssetImage('assets/img/giphy.gif') ,image: NetworkImage(categoryJewel.image!)),),
+                Container(height: 75,width: 80, decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10))),child: FadeInImage(fit: BoxFit.cover,placeholder: AssetImage('assets/img/giphy.gif') ,image: NetworkImage("https://fakestoreapi.com/img/61IBBVJvSDL._AC_SY879_.jpg")),),
+                Container(height: 75,width: 80, decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10))),child: FadeInImage(fit: BoxFit.cover,placeholder: AssetImage('assets/img/giphy.gif') ,image: NetworkImage("https://fakestoreapi.com/img/71pWzhdJNwL._AC_UL640_QL65_ML3_.jpg")),),
                 Container(height: 75,width: 80, decoration: BoxDecoration(color: Colors.grey,borderRadius: BorderRadius.all(Radius.circular(10))),child: Center(child: Text("New Category Soon!",textAlign: TextAlign.center,)),),
              
               ],),
@@ -54,7 +52,7 @@ class CategoriesTrendings extends StatelessWidget {
                 shape: RoundedRectangleBorder(
                     side: BorderSide.none,
                    borderRadius: BorderRadius.only(bottomLeft: Radius.circular(25) ,bottomRight: Radius.circular(25),topLeft: Radius.circular(15) ,topRight: Radius.circular(15) )),
-                child: Container( height: 70, decoration: BoxDecoration( color: Colors.grey,borderRadius: BorderRadius.all(Radius.circular(25))), )
+                child: Container( child: Image(image: AssetImage('assets/img/trend.png')),height: 70, decoration: BoxDecoration( color: Colors.grey,borderRadius: BorderRadius.all(Radius.circular(25))), )
               )
            ], 
            
