@@ -5,6 +5,10 @@ class MyCartPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Center(
+      child: Column(
+        children: [Container(margin: EdgeInsets.only(top: 250),child: Text("My cart Page"))],
+      ),
+    );
   }
 }

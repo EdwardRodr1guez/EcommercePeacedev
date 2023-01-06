@@ -15,8 +15,7 @@ class CategoriesTrendings extends StatelessWidget {
     //final categoryMen            = productServices.firstWhere(((element) => element.category=="men's clothing"));
     //final categoryWomen          = productServices.firstWhere(((element) => element.category=="women's clothing"));
    
-
-
+    
    
 
     return Column(

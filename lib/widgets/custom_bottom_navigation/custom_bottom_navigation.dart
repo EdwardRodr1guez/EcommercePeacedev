@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_peacedev/providers/select_page_provider.dart';
+import 'package:flutter_peacedev/shared_preferences/my_preferences.dart';
 import 'package:provider/provider.dart';
 
 class CustomBottomNavigation extends StatelessWidget {
-  const CustomBottomNavigation({
+      CustomBottomNavigation({
     Key? key,
   }) : super(key: key);
+
+  final List<String>? lista=SPHelper.sp.getfavoritos("lalista");
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +19,12 @@ class CustomBottomNavigation extends StatelessWidget {
           child: BottomNavigationBar(
              type: BottomNavigationBarType.fixed,
              onTap: (value) {
-               Provider.of<SelectPageProvider>(context,listen: false).page=value;
+               if(lista==null)
+               {
+               Provider.of<SelectPageProvider>(context,listen: false).page=0;
+               }else{
+                Provider.of<SelectPageProvider>(context,listen: false).page=value;
+               }
              },
              currentIndex: 0,
              backgroundColor: Color.fromRGBO(36, 206, 158, 1),

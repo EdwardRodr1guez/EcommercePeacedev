@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_peacedev/providers/add_like_provider.dart';
 import 'package:flutter_peacedev/providers/search_provider.dart';
 import 'package:flutter_peacedev/services/product_services.dart';
+import 'package:flutter_peacedev/shared_preferences/my_preferences.dart';
 import 'package:provider/provider.dart';
 import 'dart:math' as Math;
 
@@ -51,8 +52,18 @@ class _ListProductsState extends State<ListProducts> {
                       Container(width: 120,height: 20,decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.only(bottomLeft: Radius.circular(25) ,bottomRight: Radius.circular(25))),child: Center(child: Text("${productServices[index].title!.substring(0,Math.min(productServices[index].title!.length, 15))}", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 10),)),) 
                                 ],),
                 ),
-                Positioned(left: 90,top: 75 ,child: IconButton(onPressed: (){},icon: Icon(Icons.shopping_cart_outlined))),
-                Positioned(left: 90,top: 100,child: IconButton(onPressed: (){Provider.of<AddLikeProvider>(context,listen: false).flag[index]==0?Provider.of<AddLikeProvider>(context,listen: false).flag[index]=1 :Provider.of<AddLikeProvider>(context,listen: false).flag[index]=0;},icon: Icon(Icons.favorite_border,color:Provider.of<AddLikeProvider>(context,listen: false).flag[index]==0?Colors.grey:Colors.red,)))
+
+                Positioned(left: 90,top: 75 ,child: IconButton(
+                  onPressed: (){
+                    
+                  },icon: Icon(Icons.shopping_cart_outlined))),
+                Positioned(left: 90,top: 100,child: IconButton(
+                  onPressed: (){
+                    Provider.of<AddLikeProvider>(context,listen: false).flag[index]==0?Provider.of<AddLikeProvider>(context,listen: false).flag[index]=1 :Provider.of<AddLikeProvider>(context,listen: false).flag[index]=0;
+                     SPHelper.sp.mensaje=(index);
+                     SPHelper.sp.savefavorites("lalista",[SPHelper.sp.likes.toSet().toString()] ); 
+                    },
+                  icon: Icon(Icons.favorite_border,color:Provider.of<AddLikeProvider>(context,listen: false).flag[index]==0?Colors.grey:Colors.red,)))
                 ]
               );
           },));
